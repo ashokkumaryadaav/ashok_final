@@ -1,0 +1,58 @@
+Merge conflict
+
+git init
+cat>>filename.txt 
+add text to file and save it
+git add .
+git commit -m "  "
+git branch h1
+git branch h2
+git checkout h1
+ modify the text in file
+ git add .
+ git commit -m "  "
+ git checkout h2
+  modify the text in file
+  git add .
+  git commit -m " "
+  git checkout master
+  git merge h1
+  git merge h2
+  git mergetool
+  
+  
+  
+  github merge tool
+  
+  git config --global user.name "ashokkumaryadaav"
+  git config -- global user.email "cashokkumarhpt1997@gmail.com"
+  
+  create one folder on desktop
+  right click on that folder
+  git bash here
+  
+  git  init 
+  git remote add origin "repository link"
+  git branch  -m  main
+  git pull origin main
+  modify the files 
+  git add .
+  git commit -m "done"
+  git push origin main
+  
+  
+  git roleback(reverse)
+  git init
+cat>>filename.txt 
+add text to file and save it
+git add .
+git commit -m "  "
+ modify the text in files
+ git add .
+git commit -m "  "
+git log
+it will display all commited history copy first 8 digits from commit
+git checkout 8digits filename.txt
+it will help to go the previous step.
+ 
+  
