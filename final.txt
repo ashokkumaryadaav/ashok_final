@@ -1,0 +1,135 @@
+Uninstalling JENKINS
+Control Panel >  Uninstall
+When done, delete the following folders:
+C:\Program Files\Jenkins or C:\Program Files (x86)\Jenkins 
+C:\ProgramData\Jenkins
+C:\Windows\System32\config\systemprofile\AppData search for jenkins file n delete
+C:\Users\<<YOUR USER>> search for Jenkins or .jenkins and delete that
+
+If unable to delete due to administrative access :: run powershell as admin n type
+Remove-Item C:\ProgramData\Jenkins
+
+Go to : https://www.jenkins.io/
+Install Jenkins
+
+
+
+Git
+
+Merge Conflict in Local
+
+
+Merge Conflict in GitHub
+
+Jenkins
+
+Job with Hello World or Java Version(Batch Command).
+
+New Item > Name >FreeStyle > Add Description
+Build Steps : Add build Steps > Execute Windows batch command > echo "Hello World" or javac --version 
+Appy and Save
+Enter Build Now
+
+
+
+Same Job build periodically.(Two types : Build periodically, Poll SCM )
+
+New Item > Name >FreeStyle > Add Description
+In Build Triggers : Select Build periodically and Poll SCM
+Inside give 5 stars (* * * * * )
+* * * * * = Per Minute
+H/15 * * * * = Per 15 Minutes
+H H * * * = Every Per Day
+Build Steps : Add build Steps > Execute Windows batch command > echo "Hello World" or javac --version 
+Appy and Save
+Enter Build Now
+
+
+
+
+Pipeline:
+ with 3 Jobs (Build, Test, Deploy) using View(+)
+Install Pulgins:
+Manage Jenkins > Manage Plugins > Available Pulgins > Search Build Pipeline Plugin
+
+Create 3 jobs Build, Test and Deploy.(refer Q.1)
+Go to Job Build > configure 
+In Post-build action > Select build other project or build other project(manually) > In projects to build > Enter Next Job name (Test). Apply and save
+ Repeat the same for Test.
+		
+		Create Pipeline View.
+		In dashboard select new view (+)
+		In New view : add name > select build Pipeline View>Add
+          name>select initial job>Apply and save
+
+
+
+With pipeline script with helloworld(Declarative)
+In dashboard :-new item >enter name>select pipeline>pipeline>script>select hello world from right corner>apply and save and build project
+Pipeline script with svm(Declarative)
+In dashboard :-new item >enter name>add poll svm or build periodically >select pipeline>pipeline>script>pipeline script from  svm >in svm select git > paste repository from git with a jenkinfile >credential add email and password of app or gitpassword try >branches select main or master >script :jenkinfile refer from github >apply and save .
+
+Pipeline script with svm webhook
+In dashboard :-new item >enter name >select pipeline>pipeline>script>pipeline script from  svm >in svm select git > paste repository from git with a jenkinfile >credential add email and password of app or git password try >branches select main or master >script :jenkinfile refer from github >apply and save .
+Go to git hub :go to repo with jenkinfile>settings >webhook>add webhook>payload url from ngrok:commands 1)ngrok.exe http 8080
+Paste the link after /github-webhook/ >select send me everything >select activate>add webhook .
+Relode the git hub after making changes to a file >go to jenkins and reload it will build automatically .
+
+
+Email:
+E-mail Notification
+Go to dashboard >manage jenkins >configure system>go buttom >email Notification>smtpserver:-smtp.gmail.com>select use smtp authentication:user name: email password:app generated >use ssl tick >smtp port:465>reply to address: email >charset :utf-8>test configuration by sending test e-mail add email and test configuration the message will be sent to your email. 
+Extended E-mail Notification
+Go to dashboard >manage jenkins >configure system>go buttom>Extended-EmailNotification>smtpserver:-smtp.gmail.com>smtp port:465>Credential :-username :-email password :app generate add discription add  use ssl tick >default content type:html(text/html)>default triggers:select :-always. 
+Create a job >freestyle>got to buttom post-build action :-select Editable Email Notification >project from :any name>project recipient :-(email id ) project-reply-to-list :-(email id)> content type (html/text) apply and save build a job it will get notification to your mail 
+
+Extended E-mail Notification with Pipeline.(Two types : with Pipeline script , Pipeline script with svm)
+Go to dashboard>new item >pipeline >select build periodically>pipeline select :-pipeline script trysamplepipline select hello world paste the program:-
+pipeline {
+    agent any
+
+    stages {
+        stage('build') {
+            steps {
+                echo 'Hello World'
+            }
+        }
+        stage('test') {
+            steps {
+                echo 'Hello World'
+            }
+        }
+        stage('deploy') {
+            steps {
+                echo 'Hello World'
+            }
+        }
+    }
+    post
+    {
+        always
+        {
+            emailext body: 'body', subject: 'bodypipeline', to:'hanonoharprabhu04@gmail.com'
+        }
+    }
+}
+	
+Apply and save and build the project
+Go to dashboard>new item >pipeline >select build periodically>pipeline select>pipeline script from SCM>Add scm :-git >repositiory >repository url:-git email >credential add git hub user name :- email password :-git or app generated>discription :-add anything >scriptpath :jenkinfile or see the git hub file name apply save and build .
+
+Role Based Authorization  
+	Manage Jenkins > Manage Plugins > Role Based Authorization > Install>got to manage jenkins >configure global security>authorisation :-select roal based strategy  apply and save .
+
+Go to dashboard :-new item >item name:-anything >click on folder >ok
+In folder create a job>job name >freestyleproject >ok
+Run normal with execute windows batch command appy and save 
+
+Go to dashboard>manage jenkins >manage and assign roles>manage roles >global roles > role to add>add role (eg :-qa) click on overall :-read>go to item roles :roles to add:-(eg:-qa) pattern:-qa.*  add in item roles above add the permission which had been given in question paper  >apply and save
+Go to manage je jenkins >manage users >create a user>username:-qa password:1234 confirm password 1234 fullname :-qa email:-qa@gmail.com click on  create user
+
+Go to dashboard >manage jenkins >manage and assign roles >assign roles >user/group to add:-(eg:-qa) add click on upper qa > item roles>user/group to add :(eg:-qa) add click on upper qa role add>apply and save
+Logout and log in with the created user account and check weather you have folder with right permission or nor . if he give more roles and folders accordingly
+
+
+
+
